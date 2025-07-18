@@ -2,9 +2,9 @@ pipeline {
     agent any
 
     environment {
-        IMAGE_NAME = 'anupsharma329/node:ver1'
-        IMAGE_TAG = "${env.BUILD_NUMBER}"
-        DOCKER_CREDENTIALS_ID = 'dockerhub-cred'
+        IMAGE_NAME = 'anupsharma329/node'
+        IMAGE_TAG = 'ver1'  // you can change this to use env.BUILD_NUMBER or a Git SHA
+        DOCKER_CREDENTIALS_ID = 'dockerhub-creds'
     }
 
     stages {
@@ -41,10 +41,10 @@ pipeline {
 
     post {
         success {
-            echo "Docker image pushed: ${IMAGE_NAME}:${IMAGE_TAG}"
+            echo "✅ Docker image pushed: ${IMAGE_NAME}:${IMAGE_TAG}"
         }
         failure {
-            echo "Pipeline failed!"
+            echo "❌ Pipeline failed!"
         }
     }
 }
